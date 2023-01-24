@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Pigeon</title>
+  <!-- TODO: Add a fav icon here -->
+
+  <!-- Preload backgrounds -->
+  <link rel="preload" href="/assets/img/backgrounds/backgroundSVG-01.svg" as="image">
+  <link rel="preload" href="/assets/img/backgrounds/backgroundSVG-02.svg" as="image">
+  <link rel="preload" href="/assets/img/backgrounds/night-bg-01.svg" as="image">
+
+  <!-- Page Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/profile_styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- Font $ bootstrap -->
+  <%- include('../_partials/commonHeaders.ejs') -%>
+</head>
+
+<body>
+
+  <!-- Portrait Mode Overlay -->
+  <div class="flip-overlay">
+    <img src="/assets/img/Overlays/flipPhone.svg" alt="flip to phone">
+    <span class="portrait">FLIP TO PLAY</span>
+  </div>
+
+  <div class="wrapper">
+    <div class="outer container-fluid">
+      <div class="row">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col top-left d-flex">
+
+              <!-- Back Buton -->
+              <div class="back-btn"></div>
+
+              <!-- Your Pigeon -->
+              <div class="pigeon selectedPigeon"></div>
+
+              <!-- Name & Level -->
+              <div class="main-info d-flex flex-column justify-content-end">
+                <span class="username">Sarah123</span>
+                <div class="level-bars d-flex">
+                  <div class="level filled"></div>
+                  <div class="level filled"></div>
+                  <div class="level unfilled"></div>
+                  <div class="level unfilled"></div>
+                  <div class="level unfilled"></div>
+                </div>
+                <span class="level-title">Level 2</span>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="badge-background">
+                <div class="badges-container">
+                  <img src="" alt="" class="badge">
+                  <img src="" alt="" class="badge">
+                  <img src="" alt="" class="badge">
+                  <img src="" alt="" class="badge">
+                  <img src="" alt="" class="badge">
+                </div>
+              </div>
+              <span class="badge-title">Achievements</span>
+            </div>
+          </div>
+
+          <div class="row top-buffer">
+            <div class="col">
+              <div class="gradient-background">
+                <span class="stat-title">Online Games Played</span>
+                <span class="stat games-played">15</span>
+              </div>
+
+              <div class="gradient-background">
+                <span class="stat-title">Online Games Won</span>
+                <span class="stat games-won">7</span>
+              </div>
+
+              <div class="gradient-background">
+                <span class="stat-title">Win Ratio</span>
+                <span class="stat win-ratio">73%</span>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="span-background">
+                <span>Unlocked Items</span>
+              </div>
+              <div class="items-container">
+              <div class="container">
+                <div class="row">
+
+                  <div class="col left-item">
+                      <div class="item-background">
+                        <img src="/assets/img/pigeons/hoodie_pigeon/right_normal.svg" alt="Hoodie Pigeon" class="new-item">
+                      </div>
+                  </div>
+
+                  <div class="col right-item">
+                      <div class="item-background hidden">
+                        <!-- <img src="/assets/img/pigeons/hoodie_pigeon/right_normal.svg" alt="Hoodie Pigeon"> -->
+                      </div>
+                  </div>
+
+                  <div class="col right-item">
+                    <div class="item-background hidden">
+                      <!-- <img src="/assets/img/pigeons/hoodie_pigeon/right_normal.svg" alt="Hoodie Pigeon"> -->
+                    </div>
+                </div>
+
+                </div>
+              </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App -->
+  <%- include('../_partials/commonJsFooters.ejs') -%>
+  
+  
+</body>
+
+</html>

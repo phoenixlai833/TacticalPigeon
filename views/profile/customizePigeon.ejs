@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- TODO: Add a fav icon here -->
+
+    <!-- Preload backgrounds -->
+    <link rel="preload" href="/assets/img/backgrounds/CustomizePigeon-Background.svg" as="image">
+
+    <!-- Font $ bootstrap -->
+    <%- include('../_partials/commonHeaders.ejs') -%>
+
+    <!-- Page Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/_commons/flip_overlay.css">
+    <link rel="stylesheet" href="/assets/css/customize_pigeon/pigeons.css">
+    <link rel="stylesheet" href="/assets/css/customize_pigeon/customizeP_styles.css"/>
+    <link rel="stylesheet" href="/assets/css/customize_pigeon/media_queries.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+      let myPigeons = '<%- JSON.stringify(myPigeons) %>';
+      myPigeons = JSON.parse(myPigeons);
+      console.log('myPigeons', myPigeons);
+
+      let selectedPigeon = '<%- JSON.stringify(selectedPigeon) %>';
+      selectedPigeon = JSON.parse(selectedPigeon);
+      console.log('selectedPigeon', selectedPigeon);
+
+      let numberOfLockedPigeons = parseInt('<%- numberOfLockedPigeons %>');
+      console.log('numberOfLockedPigeons', numberOfLockedPigeons);
+    </script>
+</head>
+
+<body>
+    <!-- Portrait Mode Overlay -->
+    <div class="flip-overlay">
+        <img src="/assets/img/Overlays/flipPhone.svg" alt="flip to phone">
+        <span class="portrait">FLIP TO PLAY</span>
+    </div>
+
+    <div class="container-fluid big-container">
+        <div class="row content-row">
+            <!-- <div class="col-sm-12"> -->
+            <!-- Main Components -->
+            <div class="container-fluid">
+                <div class="row top-background">
+                    <!-- Navigation Buttons -->
+                    <div class="col" style="padding: 0">
+                        <div class="nav-buttons">
+                            <div class="save-btn d-flex flex-column">
+                                <img src="/assets/img/Icons/SaveBtn.svg" class="save disabled" alt="Save Button">
+                                <span>Save</span>
+                            </div>
+                            <div class="exit-btn d-flex flex-column">
+                                <img src="/assets/img/Icons/ExitBtn.svg" class="exit" alt="Exit Button">
+                                <span>Exit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hue Adjuster -->
+                    <div class="col">
+                        <div class="dial-container">
+                            <div class="dial-title-background d-flex justify-content-center align-items-center ">
+                                <span>Hue</span>
+                            </div>
+                            <div class="slidecontainer">
+                                <div class="slider-wrapper">
+                                    <input type="range" step="1" min="1" max="100" value="<%= (selectedPigeon && selectedPigeon.hueAngle) ? selectedPigeon.hueAngle : 0 %>" class="slider"
+                                        id="myRange" orient="vertical">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Pigeon -->
+                    <div class="col">
+                        <% if (selectedPigeon && selectedPigeon.name) { %>
+                        <div class="selectedPigeon <%= selectedPigeon.name.replace(/\s+/g, '-') %>" data-pigeon-name="<%= selectedPigeon.name.replace(/\s+/g, '-') %>" data-hue-angle="<%= selectedPigeon.hueAngle %>" style="filter: hue-rotate(<%= (selectedPigeon.hueAngle / 100).toFixed(2) %>turn)">
+                        <% } else { %>
+                        <div class="selectedPigeon">
+                        <% } %>
+                            <div class="pigeon"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pigeon Type Selector -->
+                    <div class="col">
+                        <div class="row">
+                            <div class="selector-title-background">
+                                <span>Pigeon Type</span>
+                            </div>
+
+                        </div>
+                        <div class="row type-selector justify-content-center">
+                            <div class="col type-container">
+                                <% for (let i = 0; i < myPigeons.length; i += 2) { %>
+                                <div class="row type-row justify-content-around">
+                                    <div class="col type-background">
+                                        <div class="pigeon-type-option <%= myPigeons[i].name.replace(/\s+/g, '-') %> <%= (myPigeons[i].isSelected) ? "active animate__animated animate__pulse animate__infinite" : "" %>" data-pigeon-name="<%= myPigeons[i].name.replace(/\s+/g, '-') %>" data-hue-angle="<%= myPigeons[i].hueAngle %>" data-mypigeon-arrindex="<%= i %>" style="filter: hue-rotate(<%= (myPigeons[i].hueAngle / 100).toFixed(2) %>turn)">
+                                            <div class="locked hidden"></div>
+                                        </div>
+                                    </div>
+                                    <% if (myPigeons[i + 1]) { %>
+                                        <div class="col type-background">
+                                            <div class="pigeon-type-option <%= myPigeons[i + 1]?.name.replace(/\s+/g, '-') %> <%= (myPigeons[i + 1].isSelected) ? "active animate__animated animate__pulse animate__infinite" : "" %>" data-pigeon-name="<%= myPigeons[i + 1].name.replace(/\s+/g, '-') %>" data-hue-angle="<%= myPigeons[i + 1].hueAngle %>" data-mypigeon-arrindex="<%= i + 1 %>" style="filter: hue-rotate(<%= (myPigeons[i + 1].hueAngle / 100).toFixed(2) %>turn)">
+                                                <div class="locked hidden"></div>
+                                            </div>
+                                        </div>
+                                    <% } else { %>
+                                        <div class="col type-background">
+                                            <div class="pigeon-type-option pigeon-placeholder">
+                                                <div class="locked"></div>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <% } %>
+                                <% for (let i = 0; i < numberOfLockedPigeons; i += 2) { %>
+                                <div class="row type-row justify-content-around">
+                                    <div class="col type-background">
+                                        <div class="pigeon-type-option pigeon-placeholder">
+                                            <div class="locked"></div>
+                                        </div>
+                                    </div>
+                                    <% if ((i + 1) < numberOfLockedPigeons) { %>
+                                    <div class="col type-background">
+                                        <div class="pigeon-type-option pigeon-placeholder">
+                                            <div class="locked"></div>
+                                        </div>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="col type-background hidden-rendered">
+                                            <div class="pigeon-type-option pigeon-placeholder">
+                                                <div class="locked"></div>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <% } %>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- </div> -->
+                <div class="row bottom-row">
+                    <div class=" bottom-background">
+                        <img src="/assets/img/LYPSTYC-logo.png" alt="LIPSTYC Logo" class="companyLogo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- App -->
+            <%- include('../_partials/commonJsFooters.ejs') -%>
+
+</body>
+
+</html>
