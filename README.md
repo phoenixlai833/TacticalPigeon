@@ -3,6 +3,9 @@
 A pigeon focused, turn based multiplayer strategy game where you attack, defend, and steal food from rival pigeons. The interdisciplinary term project in our second semester at BCIT using the foundational skills we learned so far.
 <br></br>
 
+<p align="center"><strong><a href="https://tacticalpigeon-production.up.railway.app/" target="_blank">Start Playing Now!</a></strong></p>
+<br></br>
+
 <div align="center">
 <img width="45%" alt="intro1" src="https://user-images.githubusercontent.com/41124039/212530064-3df1351f-4da2-44db-a26c-a3b2a6d620da.png">
 <img width="45%" alt="intro2" src="https://user-images.githubusercontent.com/41124039/212530207-af4db76d-3777-492c-ad76-93b8c71bb74b.png">
